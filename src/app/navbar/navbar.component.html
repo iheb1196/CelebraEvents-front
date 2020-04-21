@@ -1,0 +1,53 @@
+<header>
+    <div class="header-area ">
+        <div id="sticky-header" class="main-header-area ">
+            <div class="container-fluid p-0">
+                <div class="row align-items-center justify-content-between no-gutters">
+                    <div class="col-xl-2 col-lg-2">
+                        <div class="logo-img">
+                            <a routerLink="/home">
+                                <span class="App-title">CelebraEvents</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-8">
+                        <div class="main-menu  d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a  routerLink="/home" routerLinkActive="active">home</a></li>
+                                    <li><a  routerLink="/providers" routerLinkActive="active">Our providers</a></li>
+                                    <li><a  routerLink="/contact" routerLinkActive="active">Contact us</a></li>
+
+                                    
+                                    <li><a href="#">Account <i class="ti-angle-down"></i></a>
+                                        <ul class="submenu">
+                                            <section *ngIf="! isConnected">
+                                                <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+                                                <li><a routerLink="/signup" routerLinkActive="active">Sign up</a></li>
+                                            </section>
+                                            <section *ngIf="isConnected">
+                                                <li><a routerLink="/account" routerLinkActive="active">My Account</a></li>
+                                            </section>
+                                            
+                                        </ul>
+                                    </li>
+
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 d-none d-lg-block">
+                        <div class="buy_ticket">
+                            <a routerLink="/account/newevent" class="boxed-btn-white"> <i class="fa fa-plus"></i> NEW EVENT</a>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- header-end -->

@@ -1,0 +1,91 @@
+
+  <div class="content-i">
+    <div class="content-box">
+      <div class="element-wrapper">
+        <div *ngIf="isLoading">
+
+        </div>
+        <div *ngIf="! isLoading">
+            <div class="invoice-w paper-to-print">
+              <div class="infos">
+                <div class="info-1">
+                  <div class="invoice-logo-w"><img alt="" src="img/logo2.png"></div>
+                  <div class="company-name">CelebraEvents</div>
+                  <div class="company-address">47 Countrylane Ave, <br>Los Angeles, CA 97446 <br>United States</div>
+                  <div class="company-extra">tel. 858.745.5577</div>
+                </div>
+                <div class="info-2">
+                  <div class="company-name">{{user.fullname}}</div>
+                  <div class="company-address">{{user.email}}</div>
+                  
+                </div>
+              </div>
+              <div class="invoice-heading">
+                <h3>{{event.evnetTypeDeatils[0].name}}</h3>
+                <div class="invoice-date">{{event.date| date:'medium'}}</div>
+              </div>
+              <div class="invoice-body">
+                <div class="invoice-desc">
+                  <div class="desc-label"><br/>N°</div>
+                  <div class="desc-value">{{event._id}}</div>
+                </div>
+                <div class="invoice-table">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Description</th>
+                        <th class="text-right">Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{event.eventMusicDeatils[0].name}} </td>
+                        <td class="text-right">{{event.eventMusicDeatils[0].price | currency:'TND'}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{event.beautyDeatils[0].name}} </td>
+                        <td class="text-right">{{event.beautyDeatils[0].price | currency:'TND'}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{event.photographerDeatils[0].name}} </td>
+                        <td class="text-right">{{event.photographerDeatils[0].price | currency:'TND'}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{event.locationDeatils[0].name}} </td>
+                        <td class="text-right">{{event.locationDeatils[0].price | currency:'TND'}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{event.eventWearingDetails[0].name}} </td>
+                        <td class="text-right">{{event.eventWearingDetails[0].price | currency:'TND'}}</td>
+                      </tr>
+
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td>Total</td>
+                        <td class="text-right" colspan="2">{{event.eventWearingDetails[0].price + event.locationDeatils[0].price 
+                        + event.photographerDeatils[0].price +  event.beautyDeatils[0].price + event.eventMusicDeatils[0].price | currency:'TND'
+                        }}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <div class="terms">
+                    <div class="terms-header">Terms and Conditions</div>
+                    <div class="terms-content">Should be paid as soon as received, otherwise a 5% penalty fee is applied
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="invoice-footer">
+                <div class="invoice-logo"><img alt="" src="img/logo.png"><span>Paper Inc</span></div>
+                <div class="invoice-info"><span>celebraevent@contact.tn</span><span>858.757.4455</span></div>
+              </div>
+            </div>
+            <div class="text-center">
+                <a onclick="window.print();return false;" style="cursor: pointer;"><i class="fa fa-print"></i> PRINT</a>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,49 @@
+<div style="min-height: 100vh;" class="menu-w color-scheme-light color-style-default menu-position-side menu-side-left menu-layout-full sub-menu-style-over sub-menu-color-bright selected-menu-color-light menu-activated-on-hover menu-has-selected-link">
+    <div class="logo-w">
+        <a class="logo" href="index.html">
+            <div class="logo-element"></div>
+            <div class="logo-label">CelebraEvents</div>
+        </a>
+    </div>
+    <div class="logged-user-w avatar-inline">
+        <div class="logged-user-i">
+            <div class="logged-user-info-w">
+                <div class="logged-user-name">{{fullname}}</div>
+                <div class="logged-user-role">{{email}}</div>
+            </div>
+            <div class="logged-user-toggler-arrow">
+                <div class="os-icon os-icon-chevron-down"></div>
+            </div>
+            <div class="logged-user-menu color-style-bright">
+                <div class="logged-user-avatar-info">
+                    <div class="logged-user-info-w">
+                        <div class="logged-user-name">{{fullname}}</div>
+                        <div class="logged-user-role">{{email}}</div>
+                    </div>
+                </div>
+                <div class="bg-icon"><i class="fa fa-user"></i></div>
+                <ul>
+                    <li><a (click)="logOut($event)"><i class="fa fa-sign-out"></i><span>LOG OUT</span></a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <ul class="main-menu">
+        <li class="sub-header"><span>OPTIONS</span></li>
+        <li class="selected has-sub-menu">
+            <a routerLink="/account/myevents" >
+                <div class="icon-w">
+                    <div class="fa fa-gift"></div>
+                </div><span>My evnets</span></a>
+        </li>
+        <li class="selected has-sub-menu">
+            <a routerLink="/account/newevent" >
+                <div class="icon-w">
+                    <div class="fa fa-plus"></div>
+                </div><span>New event</span></a>
+        </li>
+
+    </ul>
+</div>

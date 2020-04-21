@@ -1,0 +1,115 @@
+<app-navbar></app-navbar>
+
+
+
+  <section class="sample-text-area">
+    <div class="container box_1170" style="margin-top: 60px;">
+        <h3 class="text-heading">Our providers</h3>
+        
+        <h6>Locations</h6>
+        <div class="section-top-border element-box" *ngFor="let data of locationsList">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{data.images[0]}}" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-9 mt-sm-20">
+                    <h3 class="mb-30">{{data.name}}</h3>
+                    <p>
+                        {{data.location}}
+                    </p>    
+                    
+                </div>
+            </div>
+        </div>
+
+        <h6>Music</h6>
+        <div class="section-top-border element-box" *ngFor="let data of musicList">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{data.images[0]}}" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-9 mt-sm-20">
+                    <h3 class="mb-30">{{data.name}}</h3>
+                    <p>
+                        {{data.location}}
+                    </p>    
+                    
+                </div>
+            </div>
+        </div>
+
+        <h6>Beauty</h6>
+        <div class="section-top-border element-box" *ngFor="let data of BeautyList">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{data.images[0]}}" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-9 mt-sm-20">
+                    <h3 class="mb-30">{{data.name}}</h3>
+                    <p>
+                        {{data.location}}
+                    </p>    
+                    
+                </div>
+            </div>
+        </div>
+
+        <h6>Photographers</h6>
+        <div class="section-top-border element-box" *ngFor="let data of photographsList">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{data.images[0]}}" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-9 mt-sm-20">
+                    <h3 class="mb-30">{{data.name}}</h3>
+                    <p>
+                        {{data.location}}
+                    </p>    
+                    
+                </div>
+            </div>
+        </div>
+
+        <h6>Photographers</h6>
+        <div class="section-top-border element-box" *ngFor="let data of photographsList">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{data.images[0]}}" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-9 mt-sm-20">
+                    <h3 class="mb-30">{{data.name}}</h3>
+                    <p>
+                        {{data.location}}
+                    </p>    
+                    
+                </div>
+            </div>
+        </div>
+
+        <h6>Dressing</h6>
+        <div class="section-top-border element-box" *ngFor="let data of wearingList">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{data.images[0]}}" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-9 mt-sm-20">
+                    <h3 class="mb-30">{{data.name}}</h3>
+                    <p>
+                        {{data.location}}
+                    </p>    
+                    
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+</section>
+
+
+
+
+
+
+  <app-footer></app-footer>

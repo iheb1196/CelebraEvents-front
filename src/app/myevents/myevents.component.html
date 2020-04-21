@@ -1,0 +1,76 @@
+<div class="content-w">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/account">My Account</a></li>
+        <li class="breadcrumb-item"><a routerLink="/account">My events</a></li>
+    </ul>
+    <div class="content-i">
+        <div class="content-box">
+            <div class="element-wrapper">
+                <div class="row">
+                    <div class="col-sm-12 my-2" *ngFor="let event of Events">
+                        <div class="element-box">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h4>{{event.name}}</h4>
+                                        <strong>{{event.evnetTypeDeatils[0].name}} </strong><br/>
+                                        <small> Event start at : {{event.adddate | date:'medium'}} </small>
+                                        
+                                </div>
+                                <div class="col-sm-6">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th>Description</th>
+                                            <th class="text-right">Price</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td>{{event.eventMusicDeatils[0].name}} </td>
+                                            <td class="text-right">{{event.eventMusicDeatils[0].price | currency:'TND'}}</td>
+                                          </tr>
+                                          <tr>
+                                            <td>{{event.beautyDeatils[0].name}} </td>
+                                            <td class="text-right">{{event.beautyDeatils[0].price | currency:'TND'}}</td>
+                                          </tr>
+                                          <tr>
+                                            <td>{{event.photographerDeatils[0].name}} </td>
+                                            <td class="text-right">{{event.photographerDeatils[0].price | currency:'TND'}}</td>
+                                          </tr>
+                                          <tr>
+                                            <td>{{event.locationDeatils[0].name}} </td>
+                                            <td class="text-right">{{event.locationDeatils[0].price | currency:'TND'}}</td>
+                                          </tr>
+                                          <tr>
+                                            <td>{{event.eventWearingDetails[0].name}} </td>
+                                            <td class="text-right">{{event.eventWearingDetails[0].price | currency:'TND'}}</td>
+                                          </tr>
+                    
+                                        </tbody>
+                                        <tfoot>
+                                          <tr>
+                                            <td>Total</td>
+                                            <td class="text-right" colspan="2"><strong>{{event.eventWearingDetails[0].price + event.locationDeatils[0].price 
+                                                + event.photographerDeatils[0].price +  event.beautyDeatils[0].price + event.eventMusicDeatils[0].price | currency:'TND'
+                                                }}</strong></td>
+                                          </tr>
+                                        </tfoot>
+                                      </table>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="button-group-area mt-10">
+                                        <a  class="genric-btn primary-border small" routerLink="/event/{{event._id}}" *ngIf="event.stat==1">PRINT INVOICE</a>
+                                        <a  class="genric-btn success-border small" (click)="confirmEventReservation(event._id)" *ngIf="event.stat==0" >CONFIRM</a>
+                                        <a  class="genric-btn danger-border small" (click)="deleteEventReservation(event._id)" *ngIf="event.stat==0">DELETE</a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+             </div>   
+        </div>
+    </div>
+</div>

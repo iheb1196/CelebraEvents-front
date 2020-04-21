@@ -1,0 +1,11 @@
+.event-card {
+    padding: 15px;
+}
+.event-card>i{
+    color: #FF5722;
+}
+
+.form-title-icon{
+    font-size: 25px;
+    color: #FF5722;
+}

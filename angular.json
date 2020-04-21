@@ -1,0 +1,163 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "celebraevents": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/celebraevents",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/assets/wemeet/css/bootstrap.min.css",
+              "src/assets/wemeet/css/owl.carousel.min.css",
+              "src/assets/wemeet/css/magnific-popup.css",
+              "src/assets/wemeet/css/font-awesome.min.css",
+              "src/assets/wemeet/css/themify-icons.css",
+              "src/assets/wemeet/css/nice-select.css",
+              "src/assets/wemeet/css/flaticon.css",
+              "src/assets/wemeet/css/animate.css",
+              "src/assets/wemeet/css/slicknav.css",
+              "src/assets/wemeet/css/style.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "src/assets/wemeet/js/vendor/modernizr-3.5.0.min.js",
+              "src/assets/wemeet/js/vendor/jquery-1.12.4.min.js",
+              "src/assets/wemeet/js/popper.min.js",
+              "src/assets/wemeet/js/bootstrap.min.js",
+              "src/assets/wemeet/js/owl.carousel.min.js",
+              "src/assets/wemeet/js/isotope.pkgd.min.js",
+              "src/assets/wemeet/js/ajax-form.js",
+              "src/assets/wemeet/js/waypoints.min.js",
+              "src/assets/wemeet/js/jquery.counterup.min.js",
+              "src/assets/wemeet/js/imagesloaded.pkgd.min.js",
+              "src/assets/wemeet/js/scrollIt.js",
+              "src/assets/wemeet/js/jquery.scrollUp.min.js",
+              "src/assets/wemeet/js/wow.min.js",
+              "src/assets/wemeet/js/nice-select.min.js",
+              "src/assets/wemeet/js/jquery.slicknav.min.js",
+              "src/assets/wemeet/js/jquery.magnific-popup.min.js",
+              "src/assets/wemeet/js/jquery.countdown.js",
+              "src/assets/wemeet/js/plugins.js",
+              "src/assets/wemeet/js/contact.js",
+              "src/assets/wemeet/js/jquery.ajaxchimp.min.js",
+              "src/assets/wemeet/js/jquery.form.js",
+              "src/assets/wemeet/js/jquery.validate.min.js",
+              "src/assets/wemeet/js/mail-script.js",
+              "src/assets/wemeet/js/main.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "celebraevents:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "celebraevents:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "celebraevents:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "celebraevents:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "celebraevents:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "celebraevents",
+  "cli": {
+    "analytics": false
+  }
+}

@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="slider_area slider_bg_1">
+    <div class="slider_text">
+        <div class="container">
+            <form class="log-form" [formGroup]="loginForm" (ngSubmit)="loginUser($event)">
+                <h3>CelebraEvents</h3>
+                <h6>Authentication</h6>
+                <div class="mt-10">
+                    <label>Email</label>
+                    <input type="email" name="login_" placeholder="Email"  class="single-input" formControlName="login">
+                </div>
+                <div class="mt-10">
+                    <label>Password</label>
+                    <input type="password" name="password_" placeholder="password"  class="single-input" formControlName="password">
+                </div>
+                <div class="mt-10">
+                    <p>you don't have an account ? <a routerLink="/signup" style="color: rgb(25, 147, 151);">sign up now</a> it's easy.</p>
+                </div>
+                <div class="mt-10">
+
+                    <div class="alert alert-danger" *ngIf="errorMessage">
+                        {{errorMessage}}
+                    </div>
+                    <div class="alert alert-info" *ngIf="isLoading">
+                        Please wait...
+                    </div>
+                    
+
+                </div>
+                <div class="button-group-area mt-10" *ngIf="! isLoading">
+                    <button class="genric-btn primary" [disabled]="! loginForm.valid">LOGIN NOW</button> 
+                    <a routerLink="/home" class="genric-btn success-border">CANCEL</a>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+  
+  </div>
+  <app-footer></app-footer>

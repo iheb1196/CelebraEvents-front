@@ -1,0 +1,466 @@
+<div class="content-w">
+  <ul class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/account">My Account</a></li>
+    <li class="breadcrumb-item"><a routerLink="/account/newevent">New event</a></li>
+  </ul>
+  <div class="content-i">
+    <div class="content-box">
+      <div class="element-wrapper">
+        <div class="element-box">
+          <h3>New Event wizzard</h3>
+          <p>Welcome to Celebra Event event creator, in order to create your event, please help me guide you through by
+            following this simple steps.</p>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <div class="element-box">
+
+          <div class="step1" *ngIf="step==1">
+            <form class="" [formGroup]="eventType">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h5><i class="form-title-icon fa fa-compass"></i> So what's in your mind ?</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="mt-10">
+                    <label>Event title</label>
+                    <input type="text" class="form-control" formControlName="name" />
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <label>Event type</label>
+                  <select formControlName="eventId" class="form-control">
+                    <option value="notset">Choose the type of the event.</option>
+                    <option value="{{event._id}}" *ngFor="let event of eventsList">{{event.name}}</option>
+
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label>Money for the event (TND)</label>
+                  <input type="number" class="form-control" formControlName="max">
+                </div>
+                <div class="col-sm-6">
+                  <label>Event date</label>
+                  <input type="date" class="form-control" formControlName="date">
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="mt-10">
+                  <button (click)="nextForm()"
+                    *ngIf="eventType.value.name != '' && eventType.value.date != '' && eventType.value.eventId != 'notset' && eventType.value.max > 0 "
+                    class="genric-btn success">NEXT</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+
+
+
+
+          <div class="step2" *ngIf="step==2">
+            <form class="" [formGroup]="eventLocation">
+
+
+
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <h5><i class="form-title-icon fa fa-map-marker"></i> Where are we doing this ?</h5>
+                </div>
+              </div>
+
+              <div class="alert">
+                <strong>Your current budget is : {{currentBudget | currency:'TND'}}</strong>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>Location</label>
+                  <select formControlName="eventLocationId" class="form-control" (change)="locationUpdated()">
+                    <option value="notset">Choose the location of the event.</option>
+                    <option value="{{location._id}}" *ngFor="let location of locationsList">{{location.name}}</option>
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="details-bloc" *ngIf="eventLocation.value.eventLocationId != 'notset'">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td> <strong>PRICE</strong> </td>
+                          <td> {{locationDetails.price | currency:"TND":"symbol"}} / night</td>
+
+                        </tr>
+                        <tr>
+                          <td> <strong>CAPACITY</strong> </td>
+                          <td> {{locationDetails.capacity }} person</td>
+
+                        </tr>
+                        <tr>
+                          <td> <strong>TYPE</strong> </td>
+                          <td> {{locationDetails.type}} </td>
+
+                        </tr>
+                        <tr>
+                          <td> <strong>LOCATION</strong> </td>
+                          <td> {{locationDetails.location}} </td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="row gallery-item" style="width: 100%;">
+                    <div class="col-md-4" *ngFor="let img of locationDetails.images">
+
+                      <div class="single-gallery-image" [style.background-image]="'url('+img+')'"></div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="button-group-area">
+                    <button class="genric-btn primary" (click)="previousForm()">BACK</button>
+                    <button (click)="nextForm()" class="genric-btn success"
+                      *ngIf="eventLocation.value.eventLocationId != 'notset'">NEXT</button>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+
+
+
+
+          <div class="step3" *ngIf="step==3">
+            <form class="" [formGroup]="eventMusic">
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <h5><i class="form-title-icon fa fa-music"></i> What about the music ?</h5>
+                </div>
+              </div>
+
+              <div class="alert">
+                <strong>Your current budget is : {{currentBudget | currency:'TND'}}</strong>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>Choose a band</label>
+                  <select formControlName="eventMusicId" class="form-control" (change)="musicUpdated()">
+                    <option value="notset">Choose the band for the event...</option>
+
+                    <option value="{{music._id}}" *ngFor="let music of MusicList">{{music.name}}</option>
+
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="details-bloc" *ngIf="eventMusic.value.eventMusicId != 'notset'">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td> <strong>PRICE</strong> </td>
+                          <td> {{musicDetails.price | currency:"TND":"symbol"}} / night</td>
+
+                        </tr>
+                        <tr>
+                          <td> <strong>LOCATION</strong> </td>
+                          <td> {{musicDetails.location }}</td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="row gallery-item" style="width: 100%;">
+                    <div class="col-md-4" *ngFor="let img of musicDetails.images">
+
+                      <div class="single-gallery-image" [style.background-image]="'url('+img+')'"></div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="button-group-area">
+                    <button class="genric-btn primary" (click)="previousForm()">BACK</button>
+                    <button (click)="nextForm()" class="genric-btn success"
+                      *ngIf="eventMusic.value.eventMusicId != 'notset'">NEXT</button>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+            </form>
+          </div>
+
+          <div class="step4" *ngIf="step==4">
+            <form class="" [formGroup]="eventPhotograph">
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <h5><i class="form-title-icon fa fa-camera-retro"></i> What about the photographer ?</h5>
+                </div>
+              </div>
+
+              <div class="alert">
+                <strong>Your current budget is : {{currentBudget | currency:'TND'}}</strong>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>Choose a photographer</label>
+                  <select formControlName="eventPhotographId" class="form-control" (change)="photographUpdated()">
+                    <option value="notset">Choose the photographer for the event...</option>
+                    <option value="{{photo._id}}" *ngFor="let photo of photographsList">{{photo.name}}</option>
+
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="details-bloc" *ngIf="eventPhotograph.value.eventPhotographId != 'notset'">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td> <strong>PRICE</strong> </td>
+                          <td> {{photographDetails.price | currency:"TND":"symbol"}} / night</td>
+
+                        </tr>
+                        <tr>
+                          <td> <strong>LOCATION</strong> </td>
+                          <td> {{photographDetails.location }}</td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="row gallery-item" style="width: 100%;">
+                    <div class="col-md-4" *ngFor="let img of photographDetails.images">
+
+                      <div class="single-gallery-image" [style.background-image]="'url('+img+')'"></div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="button-group-area">
+                    <button class="genric-btn primary" (click)="previousForm()">BACK</button>
+                    <button (click)="nextForm()" class="genric-btn success"
+                      *ngIf="eventPhotograph.value.eventPhotographId != 'notset'">NEXT</button>
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+          </div>
+
+
+
+          <div class="step5" *ngIf="step==5">
+            <form class="" [formGroup]="eventBeauty">
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <h5><i class="form-title-icon fa fa-diamond"></i> What about some makeup & haircut ?</h5>
+                </div>
+              </div>
+
+              <div class="alert">
+                <strong>Your current budget is : {{currentBudget | currency:'TND'}}</strong>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>Choose a hairdresser </label>
+                  <select formControlName="eventBeautyId" class="form-control" (change)="beautyUpdated()">
+                    <option value="notset">Choose the hairdresser for the event...</option>
+                    <option value="{{beau._id}}" *ngFor="let beau of beautyList">{{beau.name}}</option>
+
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="details-bloc" *ngIf="eventBeauty.value.eventBeautyId != 'notset'">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td> <strong>PRICE</strong> </td>
+                          <td> {{beautyDetails.price | currency:"TND":"symbol"}} / night</td>
+
+                        </tr>
+                        <tr>
+                          <td> <strong>LOCATION</strong> </td>
+                          <td> {{beautyDetails.location }}</td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="row gallery-item" style="width: 100%;">
+                    <div class="col-md-4" *ngFor="let img of beautyDetails.images">
+
+                      <div class="single-gallery-image" [style.background-image]="'url('+img+')'"></div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="button-group-area">
+                    <button class="genric-btn primary" (click)="previousForm()">BACK</button>
+                    <button (click)="nextForm()" class="genric-btn success"
+                      *ngIf="eventBeauty.value.eventBeautyId != 'notset'">NEXT</button>
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+          </div>
+
+
+
+          <div class="step6" *ngIf="step==6">
+            <form class="" [formGroup]="eventWearing">
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <h5><i class="form-title-icon fa fa-check"></i> All we need now is a good dress & suit ?</h5>
+                </div>
+              </div>
+
+              <div class="alert">
+                <strong>Your current budget is : {{currentBudget | currency:'TND'}}</strong>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>Choose a good dresser </label>
+                  <select formControlName="eventWearingId" class="form-control" (change)="wearingUpdated()">
+                    <option value="notset">Choose...</option>
+                    <option value="{{wear._id}}" *ngFor="let wear of wearingList">{{wear.name}}</option>
+
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="details-bloc" *ngIf="eventWearing.value.eventWearingId != 'notset'">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td> <strong>PRICE</strong> </td>
+                          <td> {{wearingDetails.price | currency:"TND":"symbol"}} / night</td>
+
+                        </tr>
+                        <tr>
+                          <td> <strong>LOCATION</strong> </td>
+                          <td> {{wearingDetails.location }}</td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="row gallery-item" style="width: 100%;">
+                    <div class="col-md-4" *ngFor="let img of wearingDetails.images">
+
+                      <div class="single-gallery-image" [style.background-image]="'url('+img+')'"></div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="button-group-area">
+                    <button class="genric-btn primary" (click)="previousForm()">BACK</button>
+                    <button (click)="finish()" class="genric-btn success"
+                      *ngIf="eventWearing.value.eventWearingId != 'notset'">FINISH</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12 mt-10">
+                  <div class="alert alert-success" *ngIf="createdSuccessfully">
+                    Your event is created successfully.
+                  </div>
+                  <div class="alert alert-danger" *ngIf="errorMessage">
+                    {{errorMessage}}
+                  </div>
+                  <div class="alert alert-info" *ngIf="isLoading">
+                    Please wait...
+                  </div>
+
+
+                </div>
+              </div>
+
+
+
+            </form>
+          </div>
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
